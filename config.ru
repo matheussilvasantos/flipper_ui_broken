@@ -9,7 +9,7 @@ url_map = {
 flipper = Flipper.new(Flipper::Adapters::Memory.new)
 
 url_map["/flipper"] = Flipper::UI.app(flipper) do |builder|
-  builder.use Rack::Session::Pool, secret: SecureRandom.uuid
+  builder.use Rack::Session::Cookie, :secret => SecureRandom.uuid
 end
 
 run Rack::URLMap.new(url_map)
